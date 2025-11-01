@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out CourtListener
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: courtlistener
 
@@ -34,7 +34,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: courtlistener
           path: /tmp/courtlistener.tar
@@ -50,7 +50,7 @@ jobs:
         tag_flags: ["--exclude-tag selenium", "--tag selenium"]
     steps:
       - name: Check out solr
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: freelawproject/courtlistener-solr-server
           ref: main
@@ -67,7 +67,7 @@ jobs:
           sudo find data -type f -exec chmod 664 {} \;
           sudo find solr -type f -exec chmod 664 {} \;
       - name: Check out CourtListener
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: courtlistener
 
@@ -93,7 +93,7 @@ jobs:
         working-directory: courtlistener/docker/courtlistener
         run: docker compose pull --quiet --ignore-buildable
       - name: Download courtlistener image
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: courtlistener
           path: /tmp
